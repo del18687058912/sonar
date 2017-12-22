@@ -1,3 +1,4 @@
+import os.path
 import numpy as np
 import pandas as pd
 from keras.layers import Conv1D, BatchNormalization, Dense, Dropout, Flatten, MaxPooling1D
@@ -10,6 +11,10 @@ class SonarModel:
         self.data_path = 'data/'
         self.model_path = '{}models/'.format(self.data_path)
         self.batch_size = 32
+
+        # Create the model folder if it doesn't already exist.
+        if not os.path.exists(self.model_path):
+            os.mkdir(self.model_path)
 
     def create_data_df(self, data, header=True):
         """
